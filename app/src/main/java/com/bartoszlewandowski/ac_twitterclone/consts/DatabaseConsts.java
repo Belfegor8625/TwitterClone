@@ -1,3 +1,8 @@
+/*
+ * Made by Bartosz Lewandowski
+ * Copyright (c) Lodz, Poland 2019.
+ */
+
 package com.bartoszlewandowski.ac_twitterclone.consts;
 
 /**

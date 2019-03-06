@@ -18,5 +18,10 @@ public final class DatabaseConsts {
 
     public static final String CREATED_AT = "createdAt";
 
+    public static final String FAN_OF = "fanOf";
+
+    public static final String CLASS_MY_TWEET = "MyTweet";
+    public static final String TWEET = "tweet";
+    public static final String USER = "user";
 
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bartoszlewandowski.ac_twitterclone.R;
 import com.bartoszlewandowski.ac_twitterclone.login.LogInActivity;
+import com.bartoszlewandowski.ac_twitterclone.users.TwitterUsersActivity;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
@@ -45,7 +46,9 @@ public class SignUpActivity extends AppCompatActivity {
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
         registerOnEnterListenerInPassword();
-
+        if (ParseUser.getCurrentUser() != null  ) {
+            startTwitterUsersActivity();
+        }
     }
 
     private void registerOnEnterListenerInPassword() {
@@ -80,9 +83,9 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (validateSignUp(e, newUser)) {
+                    progressDialog.dismiss();
                     startTwitterUsersActivity();
                 }
-                progressDialog.dismiss();
             }
         });
     }
@@ -94,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setUpProgressDialog(String message) {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(message);
         progressDialog.show();
     }
@@ -103,16 +106,17 @@ public class SignUpActivity extends AppCompatActivity {
         if (e == null) {
             FancyToast.makeText(SignUpActivity.this, newUser.getUsername() + " is signed up",
                     Toast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
-            return false;
+            return true;
         } else {
             FancyToast.makeText(SignUpActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG, FancyToast.ERROR, false).show();
-            return true;
+            return false;
         }
     }
 
     private void startTwitterUsersActivity() {
-        // TODO:
+        Intent intent = new Intent(SignUpActivity.this, TwitterUsersActivity.class);
+        startActivity(intent);
     }
 
 

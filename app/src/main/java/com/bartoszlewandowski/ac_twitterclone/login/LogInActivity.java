@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bartoszlewandowski.ac_twitterclone.R;
 import com.bartoszlewandowski.ac_twitterclone.signup.SignUpActivity;
+import com.bartoszlewandowski.ac_twitterclone.users.TwitterUsersActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -41,6 +42,9 @@ public class LogInActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         registerOnEnterListenerInPassword();
+        if (ParseUser.getCurrentUser() != null) {
+            ParseUser.logOutInBackground();
+        }
     }
 
     private void registerOnEnterListenerInPassword() {
@@ -82,25 +86,26 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void setUpProgressDialog(String message) {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(message);
         progressDialog.show();
     }
 
     private boolean validateLogIn(ParseUser user, ParseException e) {
         if (e == null) {
-            FancyToast.makeText(LogInActivity.this, user.getUsername() + " is signed up",
+            FancyToast.makeText(LogInActivity.this, user.getUsername() + " is logged in",
                     Toast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
-            return false;
+            return true;
         } else {
             FancyToast.makeText(LogInActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG, FancyToast.ERROR, false).show();
-            return true;
+            return false;
         }
     }
 
     private void startTwitterUsersActivity() {
-        //ToDo:
+        Intent intent = new Intent(LogInActivity.this, TwitterUsersActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btnGoToSignUp)

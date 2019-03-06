@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Made by Bartosz Lewandowski
-  ~ Copyright (c) Lodz, Poland 2019.
-  -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bartoszlewandowski.ac_twitterclone">
 
@@ -18,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.LogInActivity"></activity>
+        <activity android:name=".sendtweet.SendTweetActivity"></activity>
+        <activity android:name=".users.TwitterUsersActivity" />
+        <activity android:name=".login.LogInActivity" />
         <activity android:name=".signup.SignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

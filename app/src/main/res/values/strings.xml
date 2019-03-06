@@ -27,4 +27,5 @@
     // activity_send_tweet
     <string name="hint_send_tweet">Enter your tweet here</string>
     <string name="btn_send_tweet">Send Tweet</string>
+    <string name="btn_other_users_tweets">View other users tweets</string>
 </resources>
